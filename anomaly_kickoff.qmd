@@ -1,5 +1,5 @@
 ---
-title: 'Title'
+title: 'Anomaly Detection in Real-Time Data with General Adversarial Network (GAN)'
 date: ''
 format: 
   baylor_theme-revealjs:
@@ -7,13 +7,70 @@ format:
     footer: 'Nathen Byford'
 ---
 
+```{r}
+#| include: false
+
+library("tidyverse"); theme_set(theme_minimal())
+```
+
+
 ## Contents
 
 1. Motivation and goals
-2. Data
+2. Methods
+3. Data
 
 
-# Motivation
+# Motivation and Goals
 
-## Goal
+## Motivation {.smaller}
 
+real-time or streaming data analysis is the backbone of modern data-driven decision-making. A key part of utilizing real-time data is having clean data.
+
+> Garbage in, garbage out.
+
+In time series processes that are observed in real time it is even more important to be able to detect anomalies so that the cause can be identified.
+
+Anomalies can be caused by:
+
+* Faulty sensor
+* Poor data quality
+* External factors
+* Adversarial Attacks
+
+## Goals
+
+There are many methods being used to detect anomalies in streaming data with data driven methods. Typically clustering algorithems, time series analysis, change point detection, and even statistical tests. 
+
+::: def
+My goal is to utilize General Adversarial Network (GAN) models to detect anomalies on the Numenta Anomaly Benchmark (NAB) data set.
+:::
+
+# Methods
+
+# Data
+
+## Numenta Anomaly Benchmark
+
+
+
+## EDA
+
+```{r}
+#| message: false
+
+data <- read_csv("data/combined_data.csv")
+
+data |> ggplot(aes(x = timestamp, y = value)) +
+  geom_line(aes(color = company), alpha = .6) +
+  geom_point(data = filter(data, anomaly), shape = 23) +
+  facet_wrap(vars(company), scales = "free_y") +
+  scale_color_viridis_d(option = "H") +
+  labs(title = "Time plot of Twitter tags with anomalies",
+       x = "Time", y = "Twitter tags") +
+  theme(legend.position = "none")
+```
+
+:::aside
+CRM is salesforce, and KO is Coca-Cola
+:::
