@@ -1,5 +1,5 @@
 ---
-title: 'Anomaly Detection in Real-Time Data with General Adversarial Network (GAN)'
+title: 'Anomaly Detection in Real-Time Data with Generative Adversarial Network (GAN)'
 date: ''
 format: 
   baylor_theme-revealjs:
@@ -43,15 +43,50 @@ Anomalies can be caused by:
 There are many methods being used to detect anomalies in streaming data with data driven methods. Typically clustering algorithems, time series analysis, change point detection, and even statistical tests. 
 
 ::: def
-My goal is to utilize General Adversarial Network (GAN) models to detect anomalies on the Numenta Anomaly Benchmark (NAB) data set.
+My goal is to utilize Generative Adversarial Network (GAN) models to detect anomalies on the Numenta Anomaly Benchmark (NAB) data set.
 :::
 
 # Methods
 
+## Generative Adversarial Network {.smaller}
+
+GAN models, set two AI algorithms against eachother, hence "adversarial".
+
+These two models are:
+```{mermaid}
+flowchart LR
+
+subgraph sg1 [Model 1]
+A[Generator] --> B(Fake Samples)
+end
+subgraph sg2 [Model 2]
+C[Discriminator] --> D{Decision}
+end
+
+B .-> C
+E(Real Data) .-> C
+```
+
+1. Train the discriminator on real data
+2. Use the generator to make a fake data set
+3. Have the discriminator decide if the fake data was real or fake
+4. Repeat steps 2-3 until the fake data is indistinguishable from the real data.
+
+## For this project
+
+In this project I to use these generators from the GAN to predict future values of the time series.
+
+Using these future values of the time series we can determine if the observed values are reasonable based on the prediction of previous data.
+
 # Data
 
-## Numenta Anomaly Benchmark
+## Numenta Anomaly Benchmark {.smaller}
 
+Numenta, an AI company had open sourced a data set for the purpose of benchmarking anomaly detection algorithms. 
+
+* This data set  is composed of a couple different data sets, I choose to look at just their twitter tag time series.
+* The data set contains the numbers of daily tags for 10 corporate users from  February 26 through April 23 2015.
+* Four variables: date, number of tags, company, and anomaly.
 
 
 ## EDA

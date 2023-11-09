@@ -12,6 +12,8 @@ contributes:
       preview-links: false
       multiplex: false
       scrollable: true
+      mermaid:
+        theme: neutral
 execute: 
   echo: true
   cache: false
