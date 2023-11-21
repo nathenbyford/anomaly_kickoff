@@ -74,7 +74,7 @@ E(Real Data) .-> C
 
 ## For this project
 
-In this project I to use these generators from the GAN to predict future values of the time series.
+In this project I plan to use these generators from the GAN to predict future values of the time series.
 
 Using these future values of the time series we can determine if the observed values are reasonable based on the prediction of previous data.
 
@@ -109,3 +109,5 @@ data |> ggplot(aes(x = timestamp, y = value)) +
 :::aside
 CRM is salesforce, and KO is Coca-Cola
 :::
+
+# Thanks
